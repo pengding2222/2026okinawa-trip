@@ -18,15 +18,39 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif; }
     body { background-color: var(--bg-color); color: var(--text-dark); padding-bottom: 70px; }
     
-    /* Header */
-    header { background-color: var(--primary); color: var(--white); padding: 20px 15px 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+    /* Header (固定於頂部) */
+    header { 
+      background-color: var(--primary); 
+      color: var(--white); 
+      padding: 0 15px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+      height: 75px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center;
+    }
+    h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; }
     h2 { font-size: 0.9rem; font-weight: 400; opacity: 0.9; }
     
-    /* Day Selector */
-    .day-selector { display: flex; overflow-x: auto; padding: 15px; gap: 10px; scrollbar-width: none; }
+    /* Day Selector (吸附在 Header 下方) */
+    .day-selector { 
+      position: sticky; 
+      top: 75px; 
+      z-index: 95; 
+      background-color: var(--bg-color); 
+      display: flex; 
+      overflow-x: auto; 
+      padding: 15px; 
+      gap: 10px; 
+      scrollbar-width: none; 
+      border-bottom: 1px solid #e8e8e8; 
+      margin-bottom: 15px;
+    }
     .day-selector::-webkit-scrollbar { display: none; }
-    .day-btn { background: var(--white); border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; color: var(--text-dark); white-space: nowrap; transition: 0.2s; }
+    .day-btn { background: var(--white); border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; color: var(--text-dark); white-space: nowrap; transition: 0.2s; cursor: pointer; }
     .day-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
 
     /* Content Area */
@@ -76,7 +100,6 @@
     .total-jpy { font-size: 1.3rem; font-weight: bold; color: var(--primary); }
     .total-twd { font-size: 0.9rem; color: var(--text-light); }
 
-    /* Accounting Inputs */
     .input-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .input-item { padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; flex: 1; }
     .btn-add { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; flex-basis: 100%; font-size: 1.05rem; }
@@ -126,9 +149,9 @@
     <div class="tool-card">
       <h3>🏠 住宿資訊</h3>
       <ul class="tool-list">
-        <li><strong>名稱</strong>: CONDOMINIUM IT-BIN</li>
-        <li><strong>地址</strong>: 7 Chome-9-33 Hiyagon, Okinawa, 904-2173</li>
-        <li><strong>電話</strong>: 建議自備訂房網聯絡方式</li>
+        <li><strong>名稱</strong>: CONDOMINIUM 紅-BIN-</li>
+        <li><strong>地址</strong>: 7 Chome-9-33 Hlyagon, Okinawa, 904-2173 日本</li>
+        <li><strong>電話</strong>: +81 50-5355-8401</li>
       </ul>
     </div>
     <div class="tool-card">
@@ -142,7 +165,6 @@
   </div>
 
   <div id="tab-accounting" class="main-tab" style="padding: 15px;">
-    
     <div class="acct-header">
       <div class="rate-box">
         匯率: <input type="number" id="fx-rate" class="rate-input" value="0.21" step="0.001" onchange="updateTotals()">
@@ -166,8 +188,7 @@
       <button class="btn-add" onclick="addExpense()">＋ 新增這筆花費</button>
     </div>
 
-    <div id="expense-container">
-      </div>
+    <div id="expense-container"></div>
   </div>
 
   <div class="bottom-nav">
@@ -191,12 +212,12 @@
       {
         id: "day1", label: "3/11(三)", 
         events: [
-          { time: "15:55", title: "那霸機場 降落", type: "transit", address: "Okinawa, Naha, Kagamizu, 150", phone: "098-840-1151", weather: "⛅ 22°C" },
-          { time: "17:30", title: "ORIX Rent-a-car 那霸機場店", type: "transit", address: "1-1174 Toyosaki, Tomigusuku. Okinawa 901-0225", phone: "098-851-0543", weather: "⛅ 22°C" },
-          { time: "18:30", title: "民宿 Check in (CONDOMINIUM IT-BIN)", type: "stay", address: "7 Chome-9-33 Hiyagon, Okinawa 904-2173", weather: "🌙 20°C" },
-          { time: "19:00", title: "北谷ダイニングちゃぁぶ〜 (晚餐)", type: "food", address: "614-1 Kuwae Chatan Nakagami, District Okinawa", phone: "098-923-2229", weather: "🌙 19°C", guide: "<span class='tag eat'>必吃美食</span> 阿古豬火鍋！" },
-          { time: "21:00", title: "AEON MALL Okinawa Rycom", type: "buy", address: "1番地 Raikamu, Kitanakagusuku, Nakagami District", phone: "098-930-0425", weather: "🌙 19°C", guide: "<span class='tag buy'>逛街採買</span> 沖繩最大型購物中心之一。" },
-          { time: "21:00", title: "MEGA 唐吉訶德 宇流麻店", type: "buy", address: "日本〒904-2231 Okinawa, Uruma, Shioya, 502-1", phone: "098-983-6611", weather: "🌙 19°C", guide: "<span class='tag buy'>逛街採買</span> 小買一些東西回民宿，可營業到深夜。" }
+          { time: "15:55", title: "那霸機場 降落", type: "transit", address: "那霸機場", weather: "⛅ 22°C" },
+          { time: "17:30", title: "ORIX Rent-a-car", type: "transit", address: "1-1174 Tomigusuku, Niew 901-0225 日本", phone: "+81 98-851-0042", weather: "⛅ 22°C" },
+          { time: "18:30", title: "民宿 Check in (CONDOMINIUM 紅-BIN-)", type: "stay", address: "7 Chome-9-33 Hlyagon, Okinawa 904-2173 日本", weather: "🌙 20°C" },
+          { time: "19:00", title: "北谷ダイニングちゃぁコー", type: "food", address: "614-1 Kuwae, Chatan, Nakagami District", weather: "🌙 19°C", guide: "<span class='tag alert'>提示</span> 直接到南門！" },
+          { time: "21:00", title: "AEON MALL", type: "buy", address: "1番地 Raikamu, Kitanakagusuku, Nakagami District", phone: "+81 90-930-0425", weather: "🌙 19°C", guide: "<span class='tag buy'>採買</span>" },
+          { time: "21:00", title: "MEGA唐吉訶德 宇流麻店", type: "buy", address: "Okinawa, Uruma", phone: "+81 575 054-5110", weather: "🌙 19°C", guide: "<span class='tag alert'>彈性安排</span> 有空再去。" }
         ]
       },
       {
@@ -204,10 +225,10 @@
         events: [
           { time: "09:00", title: "起床", type: "routine" },
           { time: "10:00", title: "出門", type: "routine" },
-          { time: "11:00", title: "波上宮", type: "spot", address: "1 Chome-25-11 Wakasa, Naha, Okinawa", phone: "098-868-3697", weather: "☀️ 24°C" },
-          { time: "13:00", title: "國際通 & 牧志市場", type: "spot", address: "3 Chome-2-10 Makishi, Naha", phone: "098-867-6560", weather: "☀️ 25°C", guide: "<span class='tag buy'>伴手禮</span>" },
-          { time: "19:00", title: "琉家拉麵 或 阿古豬豬排", type: "food", address: "1 Chome-6-8 Matsuo, Naha", phone: "098-862-3480", weather: "🌙 21°C", guide: "晚餐選項 1 或 2" },
-          { time: "21:00", title: "AEON", type: "buy", address: "1番地 Raikamu, Kitanakagusuku", phone: "", weather: "🌙 21°C" }
+          { time: "11:00", title: "波上宮", type: "spot", address: "1 Chome-25-11 Wakasa, Naha", phone: "098-868-3697", weather: "☀️ 24°C", guide: "<span class='tag alert'>注意</span> 要找停車場！" },
+          { time: "13:00", title: "國際通 & 牧志市場", type: "spot", address: "3 Chome-2-10 Makishi, Naha", weather: "☀️ 25°C", guide: "<span class='tag eat'>午餐</span> 花生豆腐、香汁飯理等。<span class='tag buy'>伴手禮</span> 不用輸入電話！" },
+          { time: "19:00", title: "搭電車前往首里吃阿古豬豬排", type: "food", address: "3 Chome-38-2 ホープハウス 1F", phone: "+81 889174340", weather: "🌙 21°C" },
+          { time: "21:00", title: "AEON", type: "buy", address: "1番地 Raikamu, Kitanakagusuku", phone: "+81 08-830-0425", weather: "🌙 21°C" }
         ]
       },
       {
@@ -215,10 +236,9 @@
         events: [
           { time: "07:30", title: "起床", type: "routine" },
           { time: "08:30", title: "出門", type: "routine" },
-          { time: "09:30前", title: "抵達 古宇利島", type: "spot", address: "Kouri, Nakijin, Kunigami", phone: "098-056-1616", weather: "☀️ 26°C" },
-          { time: "中午過後", title: "美麗海水族館", type: "spot", address: "424 Ishikawa, Motobu", phone: "0980-48-3748", weather: "☀️ 25°C" },
-          { time: "回程", title: "回家路上超商 & 許田休息站", type: "spot", address: "17 Kyoda, Nago, Okinawa", phone: "0980-54-0880", weather: "⛅ 23°C" },
-          { time: "晚上", title: "居酒屋", type: "food", address: "民宿附近", weather: "🌙 22°C" }
+          { time: "09:30 前抵達", title: "古宇利島", type: "spot", address: "Kouri, Nakijin", weather: "☀️ 26°C" },
+          { time: "中午過後去", title: "美麗海水族館", type: "spot", address: "Motobu", weather: "☀️ 25°C" },
+          { time: "回程", title: "許田休息站 & 回家路上超商", type: "spot", address: "Kyoda, Nago", weather: "⛅ 23°C" }
         ]
       },
       {
@@ -226,16 +246,16 @@
         events: [
           { time: "08:30", title: "起床", type: "routine" },
           { time: "09:30", title: "出門", type: "routine" },
-          { time: "10:00", title: "抵達 Parco City / 港川外人住宅", type: "buy", address: "3 Chome-1-1 Irijima, Urasoe", phone: "098-871-1120", weather: "☀️ 24°C", guide: "逛街 Day" },
-          { time: "14:00", title: "美國村", type: "spot", address: "Mihama, Chatan, Nakagami District", phone: "098-926-5678", weather: "🌅 22°C" },
-          { time: "19:00", title: "燒肉金成 (Yakiniku King)", type: "food", address: "1 Chome-11-10 Kitamae, Chatan", phone: "098-989-0298", weather: "🌙 20°C" }
+          { time: "10:00 抵達", title: "Parco City / 港川外人住宅", type: "buy", address: "3 Chome-1-1 Irijima, Urasoe", weather: "☀️ 24°C", guide: "<span class='tag buy'>注意</span> 先買明天早餐！" },
+          { time: "14:00", title: "美國村", type: "spot", address: "Mihama, Chatan", weather: "🌅 22°C" },
+          { time: "19:00", title: "燒肉金成", type: "food", address: "1 Chome-11-10 Kitamae, Chatan", weather: "🌙 20°C" }
         ]
       },
       {
         id: "day5", label: "3/15(日)", 
         events: [
-          { time: "看逛多久", title: "玉泉洞 / ricoland Okinawa / A&W漢堡 / 瀨長島", type: "spot", address: "南部景點彈性安排", weather: "⛅ 23°C" },
-          { time: "17:30前", title: "ORIX 那霸機場 預計還車", type: "transit", address: "1-1174 Toyosaki, Tomigusuku", phone: "098-851-0543", weather: "🌅 22°C" },
+          { time: "看逛多久", title: "玉泉洞 / ricoland Okinawa / A&W漢堡", type: "spot", address: "南部彈性安排", weather: "⛅ 23°C" },
+          { time: "17:30 前", title: "ORIX 那霸機場 預計還車", type: "transit", address: "Orix", weather: "🌅 22°C" },
           { time: "20:20", title: "起飛 (回程)", type: "transit", address: "那霸機場", weather: "🌙 21°C" }
         ]
       }
@@ -292,11 +312,14 @@
     }
 
     function selectDay(index) {
+      // 點擊天數時自動回到頂部
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       document.querySelectorAll('.day-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
       document.querySelectorAll('.content-section').forEach((sec, i) => sec.classList.toggle('active', i === index));
     }
 
     function switchTab(tabId, element) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       document.querySelectorAll('.bottom-nav-item').forEach(item => item.classList.remove('active'));
       element.classList.add('active');
       document.querySelectorAll('.main-tab').forEach(tab => tab.classList.remove('active'));
@@ -352,17 +375,15 @@
       
       let sumJpy = 0;
       
-      // 按照天數歸類花費
       const groupedExpenses = { "1": [], "2": [], "3": [], "4": [], "5": [] };
       expenses.forEach(exp => {
         groupedExpenses[exp.day].push(exp);
         sumJpy += exp.jpy;
       });
 
-      // 依序產出每日帳單列表
       for (let i = 1; i <= 5; i++) {
         let dayData = groupedExpenses[i.toString()];
-        if (dayData.length === 0) continue; // 如果該天沒有花費，就跳過不顯示
+        if (dayData.length === 0) continue; 
 
         let dayTotalJpy = 0;
         let listHtml = '<ul class="expense-list">';
@@ -385,8 +406,6 @@
         });
         listHtml += '</ul>';
 
-        const dayTotalTwd = Math.round(dayTotalJpy * rate);
-
         container.innerHTML += `
           <div class="day-group">
             <div class="day-header">
@@ -402,7 +421,6 @@
         container.innerHTML = '<div style="text-align:center; color:#999; padding:30px;">目前還沒有任何花費紀錄喔！趕快新增一筆吧。</div>';
       }
 
-      // 更新總金額
       document.getElementById('sum-jpy').innerText = sumJpy.toLocaleString();
       document.getElementById('sum-twd').innerText = Math.round(sumJpy * rate).toLocaleString();
       
