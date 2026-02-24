@@ -138,3 +138,235 @@
     <div class="tool-card">
       <h3>✈️ 航班資訊</h3>
       <ul class="tool-list">
+        <li><strong>去程 (3/11)</strong>: FD230 | 13:30 起飛 - 15:15 降落</li>
+        <li><strong>回程 (3/15)</strong>: C123 | 20:20 起飛</li>
+      </ul>
+    </div>
+    <div class="tool-card">
+      <h3>🏠 住宿資訊</h3>
+      <ul class="tool-list">
+        <li><strong>名稱</strong>: CONDOMINIUM IT-BIN</li>
+        <li><strong>地址</strong>: 7 Chome-9-33 Hiyagon, Okinawa, 904-2173</li>
+        <li><strong>電話</strong>: 建議自備訂房網聯絡方式</li>
+      </ul>
+    </div>
+    <div class="tool-card">
+      <h3>🆘 緊急聯絡電話</h3>
+      <ul class="tool-list">
+        <li><strong>報警</strong>: 110</li>
+        <li><strong>救護車/火警</strong>: 119</li>
+        <li><strong>台北駐日經濟文化代表處 (那霸分處)</strong>: +81-98-862-7008</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="bottom-nav-item active" onclick="switchTab('itinerary', this)">
+      <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+      每日行程
+    </div>
+    <div class="bottom-nav-item" onclick="switchTab('accounting', this)">
+      <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+      預算記帳
+    </div>
+    <div class="bottom-nav-item" onclick="switchTab('tools', this)">
+      <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+      實用工具
+    </div>
+  </div>
+
+  <script>
+    // ================= 行程資料區 =================
+    const itineraryData = [
+      {
+        id: "day1", label: "3/11(三)", 
+        events: [
+          { time: "15:55", title: "那霸機場 降落", type: "transit", address: "Okinawa, Naha, Kagamizu, 150", phone: "098-840-1151", weather: "⛅ 22°C" },
+          { time: "17:30", title: "ORIX Rent-a-car 那霸機場店", type: "transit", address: "1-1174 Toyosaki, Tomigusuku. Okinawa 901-0225", phone: "098-851-0543", weather: "⛅ 22°C" },
+          { time: "18:30", title: "民宿 Check in (CONDOMINIUM IT-BIN)", type: "stay", address: "7 Chome-9-33 Hiyagon, Okinawa 904-2173", weather: "🌙 20°C" },
+          { time: "19:00", title: "北谷ダイニングちゃぁぶ〜 (晚餐)", type: "food", address: "614-1 Kuwae Chatan Nakagami, District Okinawa", phone: "098-923-2229", weather: "🌙 19°C", guide: "<span class='tag eat'>必吃美食</span> 阿古豬火鍋！" },
+          { time: "21:00", title: "AEON / MEGA唐吉訶德宇流麻店", type: "buy", address: "502-1 Shioya, Uruma, Okinawa", phone: "098-983-6611", weather: "🌙 19°C", guide: "小買一些東西回民宿。" }
+        ]
+      },
+      {
+        id: "day2", label: "3/12(四)", 
+        events: [
+          { time: "09:00", title: "起床", type: "routine" },
+          { time: "10:00", title: "出門", type: "routine" },
+          { time: "11:00", title: "波上宮", type: "spot", address: "1 Chome-25-11 Wakasa, Naha, Okinawa", phone: "098-868-3697", weather: "☀️ 24°C" },
+          { time: "13:00", title: "國際通 & 牧志市場", type: "spot", address: "3 Chome-2-10 Makishi, Naha", phone: "098-867-6560", weather: "☀️ 25°C", guide: "<span class='tag buy'>逛街採買伴手禮</span>" },
+          { time: "19:00", title: "琉家拉麵 或 阿古豬豬排", type: "food", address: "1 Chome-6-8 Matsuo, Naha", phone: "098-862-3480", weather: "🌙 21°C", guide: "晚餐選項 1 或 2" },
+          { time: "21:00", title: "AEON", type: "buy", address: "1番地 Raikamu, Kitanakagusuku", phone: "", weather: "🌙 21°C" }
+        ]
+      },
+      {
+        id: "day3", label: "3/13(五)", 
+        events: [
+          { time: "07:30", title: "起床", type: "routine" },
+          { time: "08:30", title: "出門", type: "routine" },
+          { time: "09:30前", title: "抵達 古宇利島", type: "spot", address: "Kouri, Nakijin, Kunigami", phone: "098-056-1616", weather: "☀️ 26°C" },
+          { time: "中午過後", title: "美麗海水族館", type: "spot", address: "424 Ishikawa, Motobu", phone: "0980-48-3748", weather: "☀️ 25°C" },
+          { time: "回程", title: "回家路上超商 & 許田休息站", type: "spot", address: "17 Kyoda, Nago, Okinawa", phone: "0980-54-0880", weather: "⛅ 23°C" },
+          { time: "晚上", title: "居酒屋", type: "food", address: "民宿附近", weather: "🌙 22°C" }
+        ]
+      },
+      {
+        id: "day4", label: "3/14(六)", 
+        events: [
+          { time: "08:30", title: "起床", type: "routine" },
+          { time: "09:30", title: "出門", type: "routine" },
+          { time: "10:00", title: "抵達 Parco City / 港川外人住宅", type: "buy", address: "3 Chome-1-1 Irijima, Urasoe", phone: "098-871-1120", weather: "☀️ 24°C", guide: "逛街 Day" },
+          { time: "14:00", title: "美國村", type: "spot", address: "Mihama, Chatan, Nakagami District", phone: "098-926-5678", weather: "🌅 22°C" },
+          { time: "19:00", title: "燒肉金成 (Yakiniku King)", type: "food", address: "1 Chome-11-10 Kitamae, Chatan", phone: "098-989-0298", weather: "🌙 20°C" }
+        ]
+      },
+      {
+        id: "day5", label: "3/15(日)", 
+        events: [
+          { time: "看逛多久", title: "玉泉洞 / ricoland Okinawa / A&W漢堡 / 瀨長島", type: "spot", address: "南部景點彈性安排", weather: "⛅ 23°C" },
+          { time: "17:30前", title: "ORIX 那霸機場 預計還車", type: "transit", address: "1-1174 Toyosaki, Tomigusuku", phone: "098-851-0543", weather: "🌅 22°C" },
+          { time: "20:20", title: "起飛 (回程)", type: "transit", address: "那霸機場", weather: "🌙 21°C" }
+        ]
+      }
+    ];
+
+    function renderDays() {
+      const selector = document.getElementById('day-selector');
+      const container = document.getElementById('itinerary-content');
+      
+      itineraryData.forEach((day, index) => {
+        const btn = document.createElement('button');
+        btn.className = `day-btn ${index === 0 ? 'active' : ''}`;
+        btn.innerText = day.label;
+        btn.onclick = () => selectDay(index);
+        selector.appendChild(btn);
+
+        const section = document.createElement('div');
+        section.className = `content-section ${index === 0 ? 'active' : ''}`;
+        section.id = `content-${index}`;
+        
+        day.events.forEach(event => {
+          if(event.type === 'routine') {
+             // 簡單的起床/出門卡片
+             section.innerHTML += `
+              <div class="card routine">
+                <div class="card-header">
+                  <span class="time">${event.time}</span>
+                  <span class="card-title">${event.title}</span>
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address || event.title)}`;
+          const phoneHtml = event.phone ? `<div class="phone-nav">${event.phone}</div>` : '';
+          const guideHtml = event.guide ? `<div class="guide-box">${event.guide}</div>` : '';
+          
+          section.innerHTML += `
+            <div class="card ${event.type}">
+              <div class="card-header">
+                <div class="time">${event.time}</div>
+                <div class="weather">${event.weather}</div>
+              </div>
+              <div class="card-title">${event.title}</div>
+              ${phoneHtml}
+              <div class="card-address">📍 ${event.address}</div>
+              ${guideHtml}
+              <a href="${mapLink}" target="_blank" class="nav-btn">🚗 導航至此</a>
+            </div>
+          `;
+        });
+        container.appendChild(section);
+      });
+    }
+
+    function selectDay(index) {
+      document.querySelectorAll('.day-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
+      document.querySelectorAll('.content-section').forEach((sec, i) => sec.classList.toggle('active', i === index));
+    }
+
+    // ================= 切換分頁 =================
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.bottom-nav-item').forEach(item => item.classList.remove('active'));
+      element.classList.add('active');
+      document.querySelectorAll('.main-tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    // ================= 記帳功能 =================
+    let expenses = JSON.parse(localStorage.getItem('okinawa_expenses')) || [];
+    
+    // 初始化匯率
+    window.onload = () => {
+      renderDays();
+      const savedRate = localStorage.getItem('okinawa_rate');
+      if (savedRate) document.getElementById('fx-rate').value = savedRate;
+      renderExpenses();
+    };
+
+    function addExpense() {
+      const nameInput = document.getElementById('exp-name');
+      const priceInput = document.getElementById('exp-price');
+      const name = nameInput.value.trim();
+      const price = parseFloat(priceInput.value);
+
+      if (!name || isNaN(price) || price <= 0) {
+        alert("請輸入正確的項目名稱與日幣金額哦！");
+        return;
+      }
+
+      expenses.push({ id: Date.now(), name, jpy: price });
+      saveData();
+      
+      nameInput.value = '';
+      priceInput.value = '';
+      renderExpenses();
+    }
+
+    function deleteExpense(id) {
+      expenses = expenses.filter(exp => exp.id !== id);
+      saveData();
+      renderExpenses();
+    }
+
+    function saveData() {
+      localStorage.setItem('okinawa_expenses', JSON.stringify(expenses));
+      localStorage.setItem('okinawa_rate', document.getElementById('fx-rate').value);
+    }
+
+    function renderExpenses() {
+      const list = document.getElementById('expense-list');
+      const rate = parseFloat(document.getElementById('fx-rate').value) || 0.21;
+      list.innerHTML = '';
+      
+      let sumJpy = 0;
+
+      expenses.forEach(exp => {
+        sumJpy += exp.jpy;
+        const twd = Math.round(exp.jpy * rate);
+        list.innerHTML += `
+          <li class="expense-item">
+            <div class="expense-info">
+              <span class="expense-name">${exp.name}</span>
+              <span class="expense-twd">約 NT$ ${twd.toLocaleString()}</span>
+            </div>
+            <div>
+              <span class="expense-jpy">¥ ${exp.jpy.toLocaleString()}</span>
+              <button class="btn-delete" onclick="deleteExpense(${exp.id})">刪除</button>
+            </div>
+          </li>
+        `;
+      });
+
+      document.getElementById('sum-jpy').innerText = sumJpy.toLocaleString();
+      document.getElementById('sum-twd').innerText = Math.round(sumJpy * rate).toLocaleString();
+      saveData(); // 確保改動匯率時也會存檔
+    }
+
+    function updateTotals() {
+      renderExpenses();
+    }
+  </script>
+</body>
+</html>
