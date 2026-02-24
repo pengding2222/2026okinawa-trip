@@ -1,145 +1,233 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026沖繩五天四夜自駕行🚙</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F9FA; color: #333; }
-        .hide { display: none; }
-        .tab-active { color: #8B5A2B; font-weight: bold; border-top: 4px solid #8B5A2B; }
-        .tag-food { background-color: #FEF3C7; color: #92400E; font-weight: bold; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; }
-        .tag-nav { background-color: #DBEAFE; color: #1E40AF; font-weight: bold; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; display: inline-block; width: 100%; }
-        .card { background: white; border-radius: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #E5E7EB; padding: 1.25rem; margin-bottom: 1rem; }
-        .day-header { border-left: 6px solid #8B5A2B; padding-left: 0.75rem; margin: 1.5rem 0 1rem 0; font-weight: bold; font-size: 1.2rem; color: #4B2E1E; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026 沖繩五天四夜</title>
+  <style>
+    :root {
+      --bg-color: #f7f5f0;
+      --primary: #6b7a64; /* 抹茶綠 */
+      --secondary: #c4b095; /* 木質調 */
+      --text-dark: #3a3a3a;
+      --text-light: #7a7a7a;
+      --white: #ffffff;
+      --nav-btn: #e56b55; /* 珊瑚紅 */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-dark); padding-bottom: 70px; }
+    
+    /* Header */
+    header { background-color: var(--primary); color: var(--white); padding: 20px 15px 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+    h2 { font-size: 0.9rem; font-weight: 400; opacity: 0.9; }
+    
+    /* Day Selector */
+    .day-selector { display: flex; overflow-x: auto; padding: 15px; gap: 10px; scrollbar-width: none; }
+    .day-selector::-webkit-scrollbar { display: none; }
+    .day-btn { background: var(--white); border: 1px solid #ddd; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; color: var(--text-dark); white-space: nowrap; transition: 0.2s; }
+    .day-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+
+    /* Content Area */
+    .content-section { display: none; padding: 0 15px 20px; }
+    .content-section.active { display: block; }
+    
+    /* Cards */
+    .card { background: var(--white); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border-left: 5px solid var(--secondary); position: relative; }
+    .card.transit { border-left-color: #5b8fb9; }
+    .card.food { border-left-color: #e5a955; }
+    .card.stay { border-left-color: #9b59b6; }
+    
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }
+    .time { font-weight: bold; font-size: 1.1rem; color: var(--primary); }
+    .weather { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 5px; }
+    
+    .card-title { font-size: 1.15rem; font-weight: bold; margin-bottom: 8px; }
+    .card-address { font-size: 0.85rem; color: var(--text-light); margin-bottom: 12px; line-height: 1.4; }
+    
+    /* Car Nav Phone */
+    .phone-nav { background: #f0f4f0; padding: 8px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; color: var(--primary); margin-bottom: 12px; display: inline-block; letter-spacing: 1px; border: 1px solid #dce5dc; }
+    .phone-nav::before { content: '☎ 車機輸入: '; font-size: 0.85rem; font-weight: normal; color: var(--text-light); }
+
+    /* Tour Guide Tags */
+    .guide-box { background: #fffcf5; border: 1px solid #ffebc2; padding: 10px; border-radius: 6px; font-size: 0.9rem; line-height: 1.5; margin-bottom: 12px; }
+    .tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; color: #fff; }
+    .tag.eat { background: #e67e22; }
+    .tag.buy { background: #e74c3c; }
+    .tag.alert { background: #c0392b; }
+    
+    /* Actions */
+    .nav-btn { display: block; width: 100%; text-align: center; background: var(--nav-btn); color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 1rem; }
+    
+    /* Tools Section */
+    .tool-card { background: var(--white); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+    .tool-card h3 { border-bottom: 2px solid var(--secondary); padding-bottom: 8px; margin-bottom: 10px; color: var(--primary); }
+    .tool-list li { list-style: none; margin-bottom: 8px; font-size: 0.9rem; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0; }
+
+    /* Bottom Nav Bar */
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: var(--white); display: flex; justify-content: space-around; padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
+    .bottom-nav-item { text-align: center; font-size: 0.8rem; color: var(--text-light); text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+    .bottom-nav-item.active { color: var(--primary); font-weight: bold; }
+    .bottom-nav-item svg { width: 24px; height: 24px; fill: currentColor; }
+  </style>
 </head>
-<body class="pb-24">
+<body>
 
-    <header class="bg-white shadow-sm p-5 sticky top-0 z-30 text-center">
-        <h1 class="text-xl font-black text-[#8B5A2B]">2026沖繩五天四夜自駕行🚙</h1>
-        <p class="text-sm text-gray-500 font-medium mt-1">3/11~3/15 沖繩自駕行 🚗</p>
-    </header>
+  <header>
+    <h1>2026 沖繩五天四夜</h1>
+    <h2>3/11~3/15 沖繩自駕 🚗</h2>
+  </header>
 
-    <main class="p-4" id="app-content">
+  <div id="tab-itinerary" class="main-tab" style="display: block;">
+    <div class="day-selector" id="day-selector">
+      </div>
+    <div id="itinerary-content">
+      </div>
+  </div>
+
+  <div id="tab-tools" class="main-tab" style="display: none; padding: 15px;">
+    <div class="tool-card">
+      <h3>✈️ 航班資訊</h3>
+      <ul class="tool-list">
+        <li><strong>去程 (3/11)</strong>: FD230 | 13:30 起飛 - 15:15 降落</li>
+        <li><strong>回程 (3/15)</strong>: C123 | 20:20 起飛</li>
+      </ul>
+    </div>
+    <div class="tool-card">
+      <h3>🏠 住宿資訊</h3>
+      <ul class="tool-list">
+        <li><strong>名稱</strong>: CONDOMINIUM IT-BIN</li>
+        <li><strong>地址</strong>: 7 Chome-9-33 Hiyagon, Okinawa, 904-2173</li>
+        <li><strong>電話</strong>: 建議自備訂房網聯絡方式</li>
+      </ul>
+    </div>
+    <div class="tool-card">
+      <h3>🆘 緊急聯絡電話</h3>
+      <ul class="tool-list">
+        <li><strong>報警</strong>: 110</li>
+        <li><strong>救護車/火警</strong>: 119</li>
+        <li><strong>台北駐日經濟文化代表處 (那霸分處)</strong>: +81-98-862-7008</li>
+      </ul>
+    </div>
+    <div class="tool-card">
+      <h3>💰 記帳/預算表</h3>
+      <ul class="tool-list">
+        <li>這裡未來可以串接 Google 表單或 LocalStorage 來記錄每日開銷！</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="bottom-nav-item active" onclick="switchTab('itinerary')">
+      <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+      每日行程
+    </div>
+    <div class="bottom-nav-item" onclick="switchTab('tools')">
+      <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+      實用工具
+    </div>
+  </div>
+
+  <script>
+    const itineraryData = [
+      {
+        id: "day1", label: "3/11(三)", 
+        events: [
+          { time: "15:55", title: "那霸機場 降落", type: "transit", address: "Okinawa, Naha, Kagamizu, 150", phone: "098-840-1151", weather: "⛅ 22°C", guide: "<span class='tag alert'>入境提示</span> 記得先在 VJW 填好入境資料！" },
+          { time: "17:30", title: "ORIX Rent-a-car 那霸機場店", type: "transit", address: "1-1174 Toyosaki, Tomigusuku. Okinawa 901-0225", phone: "098-851-0543", weather: "⛅ 22°C", guide: "<span class='tag alert'>自駕提示</span> 準備好台灣駕照與日文譯本。確認車況與保險！" },
+          { time: "18:30", title: "民宿 Check in (CONDOMINIUM IT-BIN)", type: "stay", address: "7 Chome-9-33 Hiyagon, Okinawa 904-2173", phone: "", weather: "🌙 20°C" },
+          { time: "19:00", title: "北谷ダイニングちゃぁぶ〜 (晚餐)", type: "food", address: "614-1 Kuwae Chatan Nakagami, District Okinawa 904-0103", phone: "098-923-2229", weather: "🌙 19°C", guide: "<span class='tag eat'>必吃美食</span> 沖繩特產**阿古豬**火鍋，油脂甘甜不膩！" },
+          { time: "21:00", title: "AEON / MEGA唐吉訶德宇流麻店", type: "buy", address: "502-1 Shioya, Uruma, Okinawa", phone: "098-983-6611", weather: "🌙 19°C", guide: "<span class='tag buy'>必買伴手禮</span> 可買些零食飲料回民宿當宵夜。" }
+        ]
+      },
+      {
+        id: "day2", label: "3/12(四)", 
+        events: [
+          { time: "11:00", title: "波上宮", type: "spot", address: "1 Chome-25-11 Wakasa, Naha, Okinawa", phone: "098-868-3697", weather: "☀️ 24°C", guide: "<span class='tag buy'>必買伴手禮</span> 超可愛的**小書包御守**！懸崖上的神社拍照極佳。" },
+          { time: "13:00", title: "國際通 & 牧志市場", type: "spot", address: "3 Chome-2-10 Makishi, Naha", phone: "098-867-6560", weather: "☀️ 25°C", guide: "<span class='tag eat'>必吃美食</span> 牧志市場一樓買海鮮，二樓代客料理！" },
+          { time: "19:00", title: "琉家拉麵 或 阿古豬豬排", type: "food", address: "1 Chome-6-8 Matsuo, Naha", phone: "098-862-3480", weather: "🌙 21°C", guide: "<span class='tag eat'>必吃美食</span> 琉家特色**焦蒜豬骨拉麵**，極致濃郁。" }
+        ]
+      },
+      {
+        id: "day3", label: "3/13(五)", 
+        events: [
+          { time: "上午", title: "古宇利島", type: "spot", address: "Kouri, Nakijin, Kunigami District, Okinawa", phone: "098-056-1616", weather: "☀️ 26°C", guide: "<span class='tag eat'>必吃美食</span> 蝦蝦飯 (Kouri Shrimp) 絕對不能錯過！" },
+          { time: "午後", title: "美麗海水族館", type: "spot", address: "424 Ishikawa, Motobu, Kunigami District", phone: "0980-48-3748", weather: "☀️ 25°C", guide: "<span class='tag alert'>省錢攻略</span> 可先在**許田休息站**買好折扣門票！黑潮之海必看。" },
+          { time: "回程", title: "許田休息站", type: "spot", address: "17 Kyoda, Nago, Okinawa", phone: "0980-54-0880", weather: "⛅ 23°C", guide: "<span class='tag buy'>必買伴手禮</span> 沖繩限定黑糖、現炸天婦羅！" }
+        ]
+      },
+      {
+        id: "day4", label: "3/14(六)", 
+        events: [
+          { time: "10:00", title: "Parco City", type: "buy", address: "3 Chome-1-1 Irijima, Urasoe", phone: "098-871-1120", weather: "☀️ 24°C", guide: "<span class='tag buy'>逛街聖地</span> 沖繩最大海景商場，各大日系品牌齊全。" },
+          { time: "14:00", title: "港川外人住宅", type: "spot", address: "2 Chome-18-3 Minatogawa, Urasoe", phone: "098-875-2129", weather: "☀️ 24°C", guide: "<span class='tag eat'>必吃美食</span> oHacorte 水果塔！文青拍照必去。" },
+          { time: "傍晚", title: "美國村", type: "spot", address: "Mihama, Chatan, Nakagami District", phone: "098-926-5678", weather: "🌅 22°C", guide: "充滿異國風情，傍晚看日落超美。" },
+          { time: "19:00", title: "燒肉金成 (Yakiniku King)", type: "food", address: "1 Chome-11-10 Kitamae, Chatan", phone: "098-989-0298", weather: "🌙 20°C", guide: "<span class='tag alert'>重要預約</span> 建議提前上網訂位以免久候！和牛吃到飽。" }
+        ]
+      },
+      {
+        id: "day5", label: "3/15(日)", 
+        events: [
+          { time: "上午", title: "玉泉洞", type: "spot", address: "1336 Maekawa, Tamagusuku, Nanjo", phone: "098-949-7421", weather: "⛅ 23°C", guide: "日本第二大鐘乳石洞，壯觀自然奇景。" },
+          { time: "中午", title: "A&W 漢堡", type: "food", address: "沖繩各分店", phone: "", weather: "⛅ 24°C", guide: "<span class='tag eat'>必點菜單</span> 沖繩限定！必喝 **Root Beer (麥根沙士)**，內用可免費續杯！" },
+          { time: "午後", title: "瀨長島 (Umikaji Terrace)", type: "spot", address: "174-6 Senaga, Tomigusuku", phone: "098-851-7446", weather: "☀️ 25°C", guide: "<span class='tag eat'>必吃美食</span> 幸福鬆餅 (建議提早抽號碼牌)！看飛機起降的絕佳地點。" },
+          { time: "17:30", title: "ORIX 那霸機場 預計還車", type: "transit", address: "1-1174 Toyosaki, Tomigusuku", phone: "098-851-0543", weather: "🌅 22°C", guide: "<span class='tag alert'>還車提示</span> 記得加滿油再還車，並保留收據！" }
+        ]
+      }
+    ];
+
+    function renderDays() {
+      const selector = document.getElementById('day-selector');
+      const container = document.getElementById('itinerary-content');
+      
+      itineraryData.forEach((day, index) => {
+        const btn = document.createElement('button');
+        btn.className = `day-btn ${index === 0 ? 'active' : ''}`;
+        btn.innerText = day.label;
+        btn.onclick = () => selectDay(index);
+        selector.appendChild(btn);
+
+        const section = document.createElement('div');
+        section.className = `content-section ${index === 0 ? 'active' : ''}`;
+        section.id = `content-${index}`;
         
-        <div id="section-itinerary">
-            
-            <div class="day-header">Day 1: 3/11 (三) 抵達與開跑</div>
-            
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">17:30</span>
-                        <h3 class="font-bold text-lg">ORIX Rent-a-car 那霸機場店</h3>
-                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">地址：1-1174 Toyosaki, Tomigusuku, Okinawa 901-0225 日本</p>
-                        <div class="mt-3 text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-851-0543</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-a-car+Naha+Airport" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
+        day.events.forEach(event => {
+          const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address || event.title)}`;
+          const phoneHtml = event.phone ? `<div class="phone-nav">${event.phone}</div>` : '';
+          const guideHtml = event.guide ? `<div class="guide-box">${event.guide}</div>` : '';
+          
+          section.innerHTML += `
+            <div class="card ${event.type}">
+              <div class="card-header">
+                <div class="time">${event.time}</div>
+                <div class="weather">${event.weather}</div>
+              </div>
+              <div class="card-title">${event.title}</div>
+              ${phoneHtml}
+              <div class="card-address">📍 ${event.address}</div>
+              ${guideHtml}
+              <a href="${mapLink}" target="_blank" class="nav-btn">🚗 導航至此</a>
             </div>
+          `;
+        });
+        container.appendChild(section);
+      });
+    }
 
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">19:00</span>
-                        <h3 class="font-bold text-lg">北谷ダイニングちゃぁぶ〜</h3>
-                        <p class="text-xs text-gray-500 mt-1">地址：614-1 Kuwae Chatan Nakagami, Okinawa 904-0103</p>
-                        <div class="my-2"><span class="tag-food">必點：阿古豬料理</span></div>
-                        <div class="text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-923-2229</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=614-1+Kuwae+Chatan+Nakagami+Okinawa" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
-            </div>
+    function selectDay(index) {
+      document.querySelectorAll('.day-btn').forEach((btn, i) => btn.classList.toggle('active', i === index));
+      document.querySelectorAll('.content-section').forEach((sec, i) => sec.classList.toggle('active', i === index));
+    }
 
-            <div class="day-header">Day 2: 3/12 (四) 市區探索</div>
+    function switchTab(tabId) {
+      document.querySelectorAll('.bottom-nav-item').forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.main-tab').forEach(tab => tab.style.display = 'none');
+      document.getElementById('tab-' + tabId).style.display = 'block';
+    }
 
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">11:00</span>
-                        <h3 class="font-bold text-lg">波上宮</h3>
-                        <p class="text-xs text-gray-500 mt-1">地址：1 Chome-25-11 Wakasa, Naha, Okinawa 900-0031</p>
-                        <div class="mt-3 text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-868-3697</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=波上宮" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">13:00</span>
-                        <h3 class="font-bold text-lg">牧志市場 / 國際通</h3>
-                        <p class="text-xs text-gray-500 mt-1">地址：2 Chome-10-1 Matsuo, Naha, Okinawa 900-0014</p>
-                        <div class="my-2"><span class="tag-food">必吃：沖繩飯糰、現炸天婦羅</span></div>
-                        <div class="text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-867-6560</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=第一牧志公設市場" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
-            </div>
-
-            <div class="day-header">Day 4: 3/14 (六) 購物與燒肉</div>
-
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">10:00</span>
-                        <h3 class="font-bold text-lg">Parco City</h3>
-                        <p class="text-xs text-gray-500 mt-1">地址：3 Chome-1-1 Irijima, Urasoe, Okinawa 901-2507</p>
-                        <div class="mt-3 text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-871-1120</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+Okinawa" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="flex justify-between items-start">
-                    <div class="w-full">
-                        <span class="text-xs font-bold text-orange-500">19:00</span>
-                        <h3 class="font-bold text-lg">燒肉金成</h3>
-                        <p class="text-xs text-gray-500 mt-1">地址：1 Chome-11-10 Kitamae, Chatan, Okinawa 904-0117</p>
-                        <div class="mt-3 text-center">
-                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-983-7566</span>
-                        </div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=燒肉金城+北谷本店" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div id="section-info" class="hide space-y-4">
-            <div class="card">
-                <h3 class="font-bold text-[#8B5A2B] border-b pb-2 mb-3">🏠 住宿：CONDOMINIUM IT-BIN</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">地址：7 Chome-9-33 Hiyagon, Okinawa 904-2173</p>
-                <div class="mt-3 text-center">
-                    <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-933-2551</span>
-                </div>
-            </div>
-            <div class="card">
-                <h3 class="font-bold text-blue-600 border-b pb-2 mb-3">✈️ 航班資訊</h3>
-                <p class="text-sm">去程：FD230 (3/11 15:55 降落)</p>
-                <p class="text-sm">回程：CI123 (3/15 20:20 起飛)</p>
-            </div>
-        </div>
-
-        <div id="section-budget" class="hide">
-            <div class="card">
-                <h3 class="font-bold mb-4 text-center">💰 旅費小管家</h3>
-                <div class="space-y-3">
-                    <input type="text" id="exp-name" placeholder="項目 (如：A&W 漢堡)" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#8B5A2B] outline-none">
-                    <input type="number" id="exp-amount" placeholder="日圓金額 (¥)" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#8B5A2B] outline-none">
-                    <button onclick="addExp()" class="w-full bg-[#8B5A2B]
+    // 初始化
+    renderDays();
+  </script>
+</body>
+</html>
