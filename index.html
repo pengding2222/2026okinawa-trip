@@ -3,201 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026沖繩五天四夜自駕行🚗</title>
+    <title>2026沖繩五天四夜自駕行🚙</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F9F6F0; color: #333; }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F9FA; color: #333; }
         .hide { display: none; }
-        .tab-active { color: #8B5A2B; font-weight: bold; border-top: 3px solid #8B5A2B; }
-        .tag-food { background-color: #FDE68A; color: #92400E; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-        .tag-buy { background-color: #FECACA; color: #991B1B; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-        .tag-spot { background-color: #D1FAE5; color: #065F46; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-        .day-title { border-left: 5px solid #8B5A2B; padding-left: 10px; margin-bottom: 15px; }
+        .tab-active { color: #8B5A2B; font-weight: bold; border-top: 4px solid #8B5A2B; }
+        .tag-food { background-color: #FEF3C7; color: #92400E; font-weight: bold; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; }
+        .tag-nav { background-color: #DBEAFE; color: #1E40AF; font-weight: bold; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; display: inline-block; width: 100%; }
+        .card { background: white; border-radius: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #E5E7EB; padding: 1.25rem; margin-bottom: 1rem; }
+        .day-header { border-left: 6px solid #8B5A2B; padding-left: 0.75rem; margin: 1.5rem 0 1rem 0; font-weight: bold; font-size: 1.2rem; color: #4B2E1E; }
     </style>
 </head>
-<body class="pb-20">
+<body class="pb-24">
 
-    <header class="bg-white shadow-sm p-4 sticky top-0 z-10 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-[#8B5A2B]"><i class="fa-solid fa-shuttle-space mr-2"></i>3/11~3/15 沖繩自駕行 🚗</h1>
-        <div class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"><i class="fa-solid fa-sun mr-1"></i> 那霸 24°C</div>
+    <header class="bg-white shadow-sm p-5 sticky top-0 z-30 text-center">
+        <h1 class="text-xl font-black text-[#8B5A2B]">2026沖繩五天四夜自駕行🚙</h1>
+        <p class="text-sm text-gray-500 font-medium mt-1">3/11~3/15 沖繩自駕行 🚗</p>
     </header>
 
     <main class="p-4" id="app-content">
-        <div id="section-itinerary" class="space-y-8">
+        
+        <div id="section-itinerary">
             
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="day-title text-lg font-bold">3/11 (三) 抵達沖繩</div>
-                <div class="space-y-4">
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">15:55</p>
-                        <p class="font-bold">🛬 那霸機場降落</p>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">17:30</p>
-                        <p class="font-bold">🚗 ORIX 租車</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-a-car+Naha+Airport" target="_blank" class="text-xs bg-gray-100 px-2 py-1 rounded mt-1 inline-block text-blue-600"><i class="fa-solid fa-location-arrow mr-1"></i>導航</a>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">19:00</p>
-                        <p class="font-bold">🍽️ 晚餐：北谷ダイニングちゃぁぶ〜</p>
-                        <p><span class="tag-food">必吃阿古豬</span></p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=614-1+Kuwae+Chatan+Nakagami" target="_blank" class="text-xs bg-gray-100 px-2 py-1 rounded mt-1 inline-block text-blue-600"><i class="fa-solid fa-location-arrow mr-1"></i>導航</a>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">21:00</p>
-                        <p class="font-bold">🛒 AEON / 唐吉軻德宇流麻店</p>
-                        <p><span class="tag-buy">深夜採買</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="day-title text-lg font-bold">3/12 (四) 市區與文化</div>
-                <div class="space-y-4">
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">11:00</p>
-                        <p class="font-bold">⛩️ 波上宮</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=波上宮" target="_blank" class="text-xs bg-gray-100 px-2 py-1 rounded mt-1 inline-block text-blue-600"><i class="fa-solid fa-location-arrow mr-1"></i>導航</a>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">13:00</p>
-                        <p class="font-bold">🛍️ 國際通 / 牧志市場</p>
-                        <p><span class="tag-buy">伴手禮</span> <span class="tag-food">海鮮加工</span></p>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">19:00</p>
-                        <p class="font-bold">🍜 晚餐：琉家拉麵 或 阿古豬豬排</p>
-                        <p><span class="tag-food">必點：阿古豬豬排</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="day-title text-lg font-bold">3/13 (五) 北部絕景</div>
-                <div class="space-y-4">
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">09:30</p>
-                        <p class="font-bold">🏝️ 古宇利島</p>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">中午</p>
-                        <p class="font-bold">🐋 美麗海水族館</p>
-                        <p><span class="tag-spot">必看黑潮之海</span></p>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">回程</p>
-                        <p class="font-bold">🍦 許田休息站</p>
-                        <p><span class="tag-food">必吃雞蛋球/冰淇淋</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="day-title text-lg font-bold">3/14 (六) 購物狂歡</div>
-                <div class="space-y-4">
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">10:00</p>
-                        <p class="font-bold">🏙️ Parco City</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Parco+City+Urasoe" target="_blank" class="text-xs bg-gray-100 px-2 py-1 rounded mt-1 inline-block text-blue-600"><i class="fa-solid fa-location-arrow mr-1"></i>導航</a>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">14:00</p>
-                        <p class="font-bold">☕ 港川外人住宅</p>
-                        <p><span class="tag-spot">文青拍照景點</span></p>
-                    </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">19:00</p>
-                        <p class="font-bold">🥩 晚餐：燒肉金成</p>
-                        <p><span class="tag-food">強烈推薦燒肉</span></p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=燒肉金成+Chatan" target="_blank" class="text-xs bg-gray-100 px-2 py-1 rounded mt-1 inline-block text-blue-600"><i class="fa-solid fa-location-arrow mr-1"></i>導航</a>
-                    </div>
-                </div>
-            </div>
+            <div class="day-header">Day 1: 3/11 (三) 抵達與開跑</div>
             
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                <div class="day-title text-lg font-bold">3/15 (日) 最後巡禮</div>
-                <div class="space-y-4">
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="font-bold">⛩️ 玉泉洞 / A&W 漢堡</p>
-                        <p><span class="tag-food">必點：Root Beer</span></p>
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">17:30</span>
+                        <h3 class="font-bold text-lg">ORIX Rent-a-car 那霸機場店</h3>
+                        <p class="text-xs text-gray-500 mt-1 leading-relaxed">地址：1-1174 Toyosaki, Tomigusuku, Okinawa 901-0225 日本</p>
+                        <div class="mt-3 text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-851-0543</span>
+                        </div>
                     </div>
-                    <div class="pl-2 border-l border-gray-200">
-                        <p class="text-xs text-gray-400">17:30</p>
-                        <p class="font-bold">🏎️ 還車 & 機場</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-a-car+Naha+Airport" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">19:00</span>
+                        <h3 class="font-bold text-lg">北谷ダイニングちゃぁぶ〜</h3>
+                        <p class="text-xs text-gray-500 mt-1">地址：614-1 Kuwae Chatan Nakagami, Okinawa 904-0103</p>
+                        <div class="my-2"><span class="tag-food">必點：阿古豬料理</span></div>
+                        <div class="text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-923-2229</span>
+                        </div>
                     </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=614-1+Kuwae+Chatan+Nakagami+Okinawa" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
+                </div>
+            </div>
+
+            <div class="day-header">Day 2: 3/12 (四) 市區探索</div>
+
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">11:00</span>
+                        <h3 class="font-bold text-lg">波上宮</h3>
+                        <p class="text-xs text-gray-500 mt-1">地址：1 Chome-25-11 Wakasa, Naha, Okinawa 900-0031</p>
+                        <div class="mt-3 text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-868-3697</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=波上宮" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">13:00</span>
+                        <h3 class="font-bold text-lg">牧志市場 / 國際通</h3>
+                        <p class="text-xs text-gray-500 mt-1">地址：2 Chome-10-1 Matsuo, Naha, Okinawa 900-0014</p>
+                        <div class="my-2"><span class="tag-food">必吃：沖繩飯糰、現炸天婦羅</span></div>
+                        <div class="text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-867-6560</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=第一牧志公設市場" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
+                </div>
+            </div>
+
+            <div class="day-header">Day 4: 3/14 (六) 購物與燒肉</div>
+
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">10:00</span>
+                        <h3 class="font-bold text-lg">Parco City</h3>
+                        <p class="text-xs text-gray-500 mt-1">地址：3 Chome-1-1 Irijima, Urasoe, Okinawa 901-2507</p>
+                        <div class="mt-3 text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-871-1120</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=PARCO+CITY+Okinawa" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex justify-between items-start">
+                    <div class="w-full">
+                        <span class="text-xs font-bold text-orange-500">19:00</span>
+                        <h3 class="font-bold text-lg">燒肉金成</h3>
+                        <p class="text-xs text-gray-500 mt-1">地址：1 Chome-11-10 Kitamae, Chatan, Okinawa 904-0117</p>
+                        <div class="mt-3 text-center">
+                            <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-983-7566</span>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=燒肉金城+北谷本店" target="_blank" class="ml-2 bg-blue-50 p-3 rounded-full text-blue-600"><i class="fa-solid fa-location-arrow"></i></a>
                 </div>
             </div>
         </div>
 
         <div id="section-info" class="hide space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm">
-                <h3 class="font-bold text-gray-500 mb-2">🏠 住宿資訊</h3>
-                <p class="text-sm">CONDOMINIUM IT-BIN</p>
-                <p class="text-xs text-gray-500">7 Chome-9-33 Hiyagon, Okinawa, 904-2173</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=7+Chome-9-33+Hiyagon+Okinawa" target="_blank" class="text-xs text-blue-500 underline">地圖查看</a>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm">
-                <h3 class="font-bold text-gray-500 mb-2">✈️ 航班資訊</h3>
-                <p class="text-sm">回程：CI123 (3/11 13:30起飛)</p>
-                <p class="text-xs text-red-500 font-bold mt-1">※ 請注意回程日期應為 3/15，請檢查 PDF 文字是否有誤</p>
-            </div>
-        </div>
-
-        <div id="section-budget" class="hide space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm">
-                <input type="text" id="exp-name" placeholder="消費項目" class="w-full mb-2 p-2 border rounded">
-                <input type="number" id="exp-amount" placeholder="日圓金額" class="w-full mb-2 p-2 border rounded">
-                <button onclick="addExp()" class="w-full bg-[#8B5A2B] text-white py-2 rounded font-bold">新增紀錄</button>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm">
-                <div class="flex justify-between mb-4">
-                    <span class="font-bold">累積消費：</span>
-                    <span id="total-val" class="text-red-500 font-bold">¥ 0</span>
+            <div class="card">
+                <h3 class="font-bold text-[#8B5A2B] border-b pb-2 mb-3">🏠 住宿：CONDOMINIUM IT-BIN</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">地址：7 Chome-9-33 Hiyagon, Okinawa 904-2173</p>
+                <div class="mt-3 text-center">
+                    <span class="tag-nav"><i class="fa-solid fa-phone mr-1"></i> 車機電話：098-933-2551</span>
                 </div>
-                <div id="exp-list" class="space-y-2 text-sm text-gray-600"></div>
+            </div>
+            <div class="card">
+                <h3 class="font-bold text-blue-600 border-b pb-2 mb-3">✈️ 航班資訊</h3>
+                <p class="text-sm">去程：FD230 (3/11 15:55 降落)</p>
+                <p class="text-sm">回程：CI123 (3/15 20:20 起飛)</p>
             </div>
         </div>
-    </main>
 
-    <nav class="bg-white fixed bottom-0 w-full border-t flex justify-around items-center h-16 z-20">
-        <button onclick="show('itinerary', this)" class="tab-btn tab-active w-full py-2"><i class="fa-solid fa-map-location-dot block text-xl"></i>行程</button>
-        <button onclick="show('info', this)" class="tab-btn w-full py-2"><i class="fa-solid fa-circle-info block text-xl"></i>資訊</button>
-        <button onclick="show('budget', this)" class="tab-btn w-full py-2"><i class="fa-solid fa-yen-sign block text-xl"></i>記帳</button>
-    </nav>
-
-    <script>
-        function show(id, btn) {
-            document.querySelectorAll('main > div').forEach(d => d.classList.add('hide'));
-            document.getElementById('section-' + id).classList.remove('hide');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
-            btn.classList.add('tab-active');
-            window.scrollTo(0,0);
-        }
-
-        let exps = JSON.parse(localStorage.getItem('trip_exps')) || [];
-        function updateExps() {
-            const list = document.getElementById('exp-list');
-            let total = 0;
-            list.innerHTML = exps.map((e, i) => {
-                total += e.amt;
-                return `<div class="flex justify-between border-b pb-1"><span>${e.txt}</span><span>¥${e.amt}</span></div>`;
-            }).join('');
-            document.getElementById('total-val').innerText = '¥ ' + total.toLocaleString();
-        }
-        function addExp() {
-            const txt = document.getElementById('exp-name').value;
-            const amt = parseInt(document.getElementById('exp-amount').value);
-            if(txt && amt) {
-                exps.push({txt, amt});
-                localStorage.setItem('trip_exps', JSON.stringify(exps));
-                updateExps();
-                document.getElementById('exp-name').value = '';
-                document.getElementById('exp-amount').value = '';
-            }
-        }
-        updateExps();
-    </script>
-</body>
-</html>
+        <div id="section-budget" class="hide">
+            <div class="card">
+                <h3 class="font-bold mb-4 text-center">💰 旅費小管家</h3>
+                <div class="space-y-3">
+                    <input type="text" id="exp-name" placeholder="項目 (如：A&W 漢堡)" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#8B5A2B] outline-none">
+                    <input type="number" id="exp-amount" placeholder="日圓金額 (¥)" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-[#8B5A2B] outline-none">
+                    <button onclick="addExp()" class="w-full bg-[#8B5A2B]
