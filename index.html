@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>沖繩自駕案內所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F9F6F0; color: #333; }
+        .hide { display: none; }
+        .tab-active { color: #8B5A2B; font-weight: bold; border-top: 2px solid #8B5A2B; }
+        .tag-food { background-color: #FDE68A; color: #92400E; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+        .tag-buy { background-color: #FECACA; color: #991B1B; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+        .tag-alert { background-color: #BFDBFE; color: #1E40AF; font-weight: bold; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <header class="bg-white shadow-sm p-4 sticky top-0 z-10 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-[#8B5A2B]"><i class="fa-solid fa-car-side mr-2"></i>沖繩自駕行</h1>
+        <div class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+            <i class="fa-solid fa-cloud-sun mr-1"></i> 那霸 26°C
+        </div>
+    </header>
+
+    <main class="p-4" id="app-content">
+        
+        <div id="section-itinerary" class="space-y-6">
+            
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold border-b-2 border-[#8B5A2B] pb-1">Day 1：抵達與採買</h2>
+                    <span class="text-xs text-gray-400">天氣：晴朗</span>
+                </div>
+                
+                <div class="mb-4 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">15:55</p>
+                    <p class="font-medium text-lg">抵達沖繩 & 租車</p>
+                    <p class="text-sm text-gray-600 mt-1"><span class="tag-alert">重要預約代號：CAR-OKI-1234</span></p>
+                    <a href="https://maps.google.com/?q=Okinawa+Airport+Car+Rental" target="_blank" class="inline-block mt-2 text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-location-arrow mr-1"></i>開始導航</a>
+                </div>
+
+                <div class="mb-2 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">21:00</p>
+                    <p class="font-medium text-lg">AEON 購物中心</p>
+                    <p class="text-sm text-gray-600 mt-1">
+                        <span class="tag-buy">必買伴手禮</span> 超市零食、藥妝補給
+                    </p>
+                    <a href="https://maps.google.com/?q=AEON+Okinawa" target="_blank" class="inline-block mt-2 text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-location-arrow mr-1"></i>開始導航</a>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold border-b-2 border-[#8B5A2B] pb-1">Day 2：在地文化與美食</h2>
+                    <span class="text-xs text-gray-400">天氣：多雲</span>
+                </div>
+                
+                <div class="mb-4 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">11:00</p>
+                    <p class="font-medium text-lg">牧志公設市場周邊</p>
+                    <p class="text-sm text-gray-600 mt-1">
+                        <span class="tag-food">必吃美食</span> 沖繩飯糰、海鮮代客料理<br>
+                        <span class="tag-buy">必買伴手禮</span> 沖繩黑糖、雪鹽
+                    </p>
+                    <a href="https://maps.google.com/?q=Makishi+Public+Market" target="_blank" class="inline-block mt-2 text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-location-arrow mr-1"></i>開始導航</a>
+                </div>
+
+                <div class="mb-2 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">19:00</p>
+                    <p class="font-medium text-lg">阿古豬燒肉 / 豬豬</p>
+                    <p class="text-sm text-gray-600 mt-1">
+                        <span class="tag-food">必點菜單</span> 頂級阿古豬拼盤
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold border-b-2 border-[#8B5A2B] pb-1">Day 3：逛街與文青之旅</h2>
+                    <span class="text-xs text-gray-400">天氣：晴朗</span>
+                </div>
+                
+                <div class="mb-4 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">10:00</p>
+                    <p class="font-medium text-lg">Parco City</p>
+                    <p class="text-sm text-gray-600 mt-1 text-xs">地址：901-2007 日本</p>
+                    <p class="text-sm text-gray-600 mt-1"><span class="tag-buy">必買伴手禮</span> 日本服飾品牌、無印良品大型店</p>
+                    <a href="https://maps.google.com/?q=Parco+City+Okinawa" target="_blank" class="inline-block mt-2 text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-location-arrow mr-1"></i>開始導航</a>
+                </div>
+
+                <div class="mb-4 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">14:00</p>
+                    <p class="font-medium text-lg">港川外人住宅</p>
+                    <p class="text-sm text-gray-600 mt-1 text-xs">地址：2 Chome-18-2 Makiminato 901-2134</p>
+                    <p class="text-sm text-gray-600 mt-1">逛文青小店吃甜點</p>
+                    <p class="text-sm text-gray-600 mt-1"><span class="tag-food">必吃美食</span> oHacorte 水果塔、黑糖可麗露</p>
+                    <a href="https://maps.google.com/?q=2+Chome-18-2+Makiminato+Urasoe+Okinawa" target="_blank" class="inline-block mt-2 text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-location-arrow mr-1"></i>開始導航</a>
+                </div>
+                
+                <div class="mb-2 pl-3 border-l-2 border-gray-200">
+                    <p class="text-sm text-gray-500">隨機安排</p>
+                    <p class="font-medium text-lg">A&W 漢堡</p>
+                    <p class="text-sm text-gray-600 mt-1"><span class="tag-food">必點菜單</span> 麥根沙士 (Root Beer)、起司圈圈薯</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-info" class="hide space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-plane text-gray-400 mr-2"></i>航班資訊</h3>
+                <p class="text-sm text-gray-600">去程：CI 120 (TPE 08:15 - OKA 10:45)<br>回程：CI 123 (OKA 20:50 - TPE 21:35)</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-bed text-gray-400 mr-2"></i>住宿資訊</h3>
+                <p class="text-sm text-gray-600 font-bold">那霸市區飯店</p>
+                <p class="text-sm text-gray-600 mt-1">電話：+81-98-123-4567<br>地址：沖繩縣那霸市...</p>
+                <span class="tag-alert mt-2 inline-block">訂房代號：AGODA-98765</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-red-100">
+                <h3 class="font-bold text-lg text-red-600 mb-2"><i class="fa-solid fa-phone-volume mr-2"></i>緊急聯絡</h3>
+                <p class="text-sm text-gray-600">警察局：110<br>救護車/消防：119<br>台北駐日經濟文化代表處那霸分處：<br>+81-98-862-7008</p>
+            </div>
+        </div>
+
+        <div id="section-budget" class="hide space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-lg mb-3">新增支出</h3>
+                <input type="text" id="expense-name" placeholder="項目 (例: 晚餐燒肉)" class="w-full mb-2 p-2 border border-gray-300 rounded focus:outline-none focus:border-[#8B5A2B]">
+                <input type="number" id="expense-amount" placeholder="金額 (日圓)" class="w-full mb-3 p-2 border border-gray-300 rounded focus:outline-none focus:border-[#8B5A2B]">
+                <button onclick="addExpense()" class="w-full bg-[#8B5A2B] text-white py-2 rounded font-bold hover:bg-[#6e4620]">記上一筆</button>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold text-lg">總花費</h3>
+                    <span id="total-amount" class="text-xl font-bold text-red-600">¥ 0</span>
+                </div>
+                <ul id="expense-list" class="space-y-2 text-sm">
+                    </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <nav class="bg-white fixed bottom-0 w-full border-t border-gray-200 flex justify-around items-center h-16 text-gray-400 text-sm z-10">
+        <button onclick="switchTab('itinerary', this)" class="tab-btn tab-active flex flex-col items-center w-full pt-2">
+            <i class="fa-regular fa-calendar-check text-xl mb-1"></i>行程
+        </button>
+        <button onclick="switchTab('info', this)" class="tab-btn flex flex-col items-center w-full pt-2">
+            <i class="fa-solid fa-info-circle text-xl mb-1"></i>資訊
+        </button>
+        <button onclick="switchTab('budget', this)" class="tab-btn flex flex-col items-center w-full pt-2">
+            <i class="fa-solid fa-wallet text-xl mb-1"></i>記帳
+        </button>
+    </nav>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabId, element) {
+            document.getElementById('section-itinerary').classList.add('hide');
+            document.getElementById('section-info').classList.add('hide');
+            document.getElementById('section-budget').classList.add('hide');
+            
+            document.getElementById('section-' + tabId).classList.remove('hide');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            element.classList.add('tab-active');
+        }
+
+        // Offline Budget Logic (localStorage)
+        let expenses = JSON.parse(localStorage.getItem('oki_expenses')) || [];
+
+        function renderExpenses() {
+            const list = document.getElementById('expense-list');
+            const totalEl = document.getElementById('total-amount');
+            list.innerHTML = '';
+            let total = 0;
+
+            expenses.forEach((exp, index) => {
+                total += exp.amount;
+                list.innerHTML += `
+                    <li class="flex justify-between border-b border-gray-100 pb-1">
+                        <span>${exp.name}</span>
+                        <div class="flex gap-3">
+                            <span class="font-medium">¥ ${exp.amount}</span>
+                            <button onclick="deleteExpense(${index})" class="text-red-400"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </li>
+                `;
+            });
+            totalEl.innerText = `¥ ${total}`;
+        }
+
+        function addExpense() {
+            const name = document.getElementById('expense-name').value;
+            const amount = parseInt(document.getElementById('expense-amount').value);
+            
+            if(name && amount) {
+                expenses.push({ name, amount });
+                localStorage.setItem('oki_expenses', JSON.stringify(expenses));
+                document.getElementById('expense-name').value = '';
+                document.getElementById('expense-amount').value = '';
+                renderExpenses();
+            }
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            localStorage.setItem('oki_expenses', JSON.stringify(expenses));
+            renderExpenses();
+        }
+
+        // Initialize
+        renderExpenses();
+    </script>
+</body>
+</html>
